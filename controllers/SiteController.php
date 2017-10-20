@@ -25,7 +25,7 @@ class SiteController extends Controller
 				'firstname' => StringHelper::safeText($_POST['firstname']),
 				'lastname' => StringHelper::safeText($_POST['lastname']),
 				'about' => StringHelper::safeText($_POST['about']),
-				'borndate' => \DateTime::createFromFormat('d.m.Y', $_POST['borndate'])->setTime(0, 0, 0)->getTimestamp(),
+				'borndate' => \DateTime::createFromFormat('d.m.Y', $_POST['borndate'])->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
 				'sex' => (int) $_POST['sex']
 			);
 
@@ -52,7 +52,7 @@ class SiteController extends Controller
 				'firstname' => StringHelper::safeText($_POST['firstname']),
 				'lastname' => StringHelper::safeText($_POST['lastname']),
 				'about' => StringHelper::safeText($_POST['about']),
-				'borndate' => \DateTime::createFromFormat('d.m.Y', $_POST['borndate'])->setTime(0, 0, 0)->getTimestamp(),
+				'borndate' => \DateTime::createFromFormat('d.m.Y', $_POST['borndate'])->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
 				'sex' => (int) $_POST['sex']
 			);
 

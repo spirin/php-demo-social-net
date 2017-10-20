@@ -2,19 +2,19 @@
 	<div class="form-group row">
 		<label for="firstname" class="col-sm-4 col-form-label">Имя</label>
 		<div class="col-sm-8">
-			<input type="firstname" class="form-control form-control-sm" name="firstname" id="firstname" value="<?php echo htmlspecialchars($_POST['firstname']); ?>">
+			<input type="firstname" class="form-control form-control-sm" name="firstname" id="firstname" value="<?php echo htmlspecialchars(@$_POST['firstname']); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="lastname" class="col-sm-4 col-form-label">Фамилия</label>
 		<div class="col-sm-8">
-			<input type="lastname" class="form-control form-control-sm" name="lastname" id="lastname" value="<?php echo htmlspecialchars($_POST['lastname']); ?>">
+			<input type="lastname" class="form-control form-control-sm" name="lastname" id="lastname" value="<?php echo htmlspecialchars(@$_POST['lastname']); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="borndate" class="col-sm-4 col-form-label">Дата рождения</label>
 		<div class="col-sm-8">
-			<input type="borndate" class="form-control form-control-sm" name="borndate" id="borndate" value="04.04.2000">
+			<input type="borndate" class="form-control form-control-sm" name="borndate" id="borndate" value="<?php echo htmlspecialchars(@$_POST['borndate']); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
@@ -35,19 +35,19 @@
 	<div class="form-group row">
 		<label for="about" class="col-sm-4 col-form-label">О себе</label>
 		<div class="col-sm-8">
-			<textarea class="form-control form-control-sm" name="about" id="about" rows="3"><?php echo htmlspecialchars($_POST['about']); ?></textarea>
+			<textarea class="form-control form-control-sm" name="about" id="about" rows="3"><?php echo htmlspecialchars(@$_POST['about']); ?></textarea>
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="email" class="col-sm-4 col-form-label">Email</label>
 		<div class="col-sm-8">
-			<input type="email" class="form-control form-control-sm" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+			<input type="email" class="form-control form-control-sm" name="email" id="email" value="<?php echo htmlspecialchars(@$_POST['email']); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="phone" class="col-sm-4 col-form-label">Телефон</label>
 		<div class="col-sm-8">
-			<input type="phone" class="form-control form-control-sm" name="phone" id="phone" value="<?php echo htmlspecialchars($_POST['phone']); ?>">
+			<input type="phone" class="form-control form-control-sm" name="phone" id="phone" value="<?php echo htmlspecialchars(@$_POST['phone']); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
@@ -58,3 +58,16 @@
 	</div>
 	<button type="submit" class="btn btn-primary" name="submit" value="submit">Присоединиться</button>
 </form>
+
+<?php $this->scriptStart(); ?>
+
+<script type="text/javascript">
+	$('#borndate').datepicker({
+		format: "dd.mm.yyyy",
+		language: "ru",
+		autoclose: true,
+		todayHighlight: true
+	});
+</script>
+<?php
+$this->scriptEnd();

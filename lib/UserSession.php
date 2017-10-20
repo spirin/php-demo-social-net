@@ -45,7 +45,9 @@ class UserSession extends Component
 			}
 			else
 			{
-				throw new Exception('Invalid session id');
+				$this->logout();
+				
+				throw new \Exception('Invalid session id');
 			}
 		}
 	}

@@ -8,7 +8,7 @@
 		<div class="col-10">
 			<h3 style="text-align: left"><?php echo $wallUser['firstname']; ?> <?php echo $wallUser['lastname']; ?></h3>
 			<p><?php echo (int) $wallUser['sex'] ? 'Мужчина' : 'Женщина'; ?>, 
-				<?php echo (new DateTime())->setTimestamp((int) $wallUser['borndate'])->format('d.m.Y'); ?></p>
+				<?php echo DateTime::createFromFormat('Y-m-d H:i:s', $wallUser['borndate'])->format('d.m.Y') ?></p>
 			<p><?php echo $wallUser['about']; ?></p>
 
 			<br />
@@ -100,6 +100,7 @@
 		let templateResultRow = _.template($('#templateResultRow').text());
 		let templateShowMore = _.template($('#templateShowMore').text());
 		let templateAjaxLoader = _.template($('#templateAjaxLoader').text());
+		let globalPage = 0;
 
 		function appendResultRow(data, prepend) {
 			if (prepend) {
@@ -110,18 +111,21 @@
 		}
 		function appendShowMoreButton() {
 			$('#results').append(templateShowMore());
+			$('#showmore').click(function () {
+				appendResults(30);
+			});
 		}
 		function appendAjaxLoader() {
 			$('#results').append(templateAjaxLoader());
 		}
 
-		function appendResults(page, limit) {
+		function appendResults(limit) {
 			let container = $('#results');
 
 			container.find('#showmore').remove();
 			appendAjaxLoader();
 
-			$.getJSON('/?route=ajaxGetComments&target=wp&targetId=<?php echo $wallUser['id']; ?>&treeId=<?php echo $wallUser['id']; ?>&page=' + page, {}, function (response) {
+			$.getJSON('/?route=ajaxGetComments&target=wp&targetId=<?php echo $wallUser['id']; ?>&treeId=<?php echo $wallUser['id']; ?>&page=' + globalPage, {}, function (response) {
 				container.find('#progressBar').remove();
 
 				if (response) {
@@ -130,6 +134,7 @@
 							for (let i in results) {
 								appendResultRow(results[i]);
 							}
+							globalPage++;
 							if (results.length === limit) {
 								appendShowMoreButton();
 							}
@@ -143,7 +148,7 @@
 			});
 		}
 
-		appendResults(0, 30);
+		appendResults(30);
 	</script>
 	<?php $this->scriptEnd(); ?>
 </div>

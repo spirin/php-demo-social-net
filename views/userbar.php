@@ -3,7 +3,7 @@
 		<div class="col-12">
 			<ul class="nav nav-pills flex-column">
 				<li class="nav-item">
-					<a class="nav-link" href="'/?route=wall&id=<?php echo $sessionUser['id']; ?>" role="tab">Моя стена</a>
+					<a class="nav-link" href="/?route=wall&id=<?php echo $sessionUser['id']; ?>" role="tab">Моя стена</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/?route=friends">Мои друзья<?php if ($sessionNewFriends) : 

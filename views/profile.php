@@ -16,7 +16,7 @@
 	<div class="form-group row">
 		<label for="borndate" class="col-sm-4 col-form-label">Дата рождения</label>
 		<div class="col-sm-8">
-			<input type="borndate" class="form-control form-control-sm" name="borndate" id="borndate" value="<?php echo date('d.m.Y', $sessionUser['borndate']); ?>">
+			<input type="borndate" class="form-control form-control-sm" name="borndate" id="borndate" value="<?php echo DateTime::createFromFormat('Y-m-d H:i:s', $sessionUser['borndate'])->format('d.m.Y'); ?>">
 		</div>
 	</div>
 	<div class="form-group row">
@@ -48,7 +48,6 @@
 	</div>
 	<button type="submit" class="btn btn-primary" name="submit" value="submit">Обновить</button>
 </form>
-
 
 <?php $this->scriptStart(); ?>
 

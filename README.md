@@ -12,3 +12,9 @@
 В проекте активно используются принципы DRY, KISS, YAGNI, распределение обязанностей из SOLID.
 
 Визуальное оформление - Bootstrap 4.
+
+Тестовые учетные записи:
+karina@test.ru / karina
+pavel@test.ru / pavel
+sofiya@test.ru / sofiya
+andrey@test.ru / andrey

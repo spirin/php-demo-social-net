@@ -42,24 +42,28 @@
 	let templateResultRow = _.template($('#templateResultRow').text());
 	let templateShowMore = _.template($('#templateShowMore').text());
 	let templateAjaxLoader = _.template($('#templateAjaxLoader').text());
+	let globalPage = 0;
 
 	function appendResultRow(data) {
 		$('#results').append(templateResultRow(data));
 	}
 	function appendShowMoreButton() {
 		$('#results').append(templateShowMore());
+		$('#showmore').click(function () {
+			appendResults($('#searchQuery').val(), 30);
+		});
 	}
 	function appendAjaxLoader() {
 		$('#results').append(templateAjaxLoader());
 	}
 
-	function appendResults(query, page, limit) {
+	function appendResults(query, limit) {
 		let container = $('#results');
 
 		container.find('#showmore').remove();
 		appendAjaxLoader();
 
-		$.getJSON('/?route=ajaxSearch&query=' + query + '&page=' + page, {}, function (response) {
+		$.getJSON('/?route=ajaxSearch&query=' + query + '&page=' + globalPage, {}, function (response) {
 			container.find('#progressBar').remove();
 
 			if (response) {
@@ -68,6 +72,7 @@
 						for (let i in results) {
 							appendResultRow(results[i]);
 						}
+						globalPage++;
 						if (results.length === limit) {
 							appendShowMoreButton();
 						}
@@ -83,8 +88,9 @@
 
 	$('#submit').click(function () {
 		$('#results').html('');
+		globalPage = 0;
 
-		appendResults($('#searchQuery').val(), 0, 30);
+		appendResults($('#searchQuery').val(), 30);
 
 		return false;
 	});
