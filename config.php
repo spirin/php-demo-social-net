@@ -1,43 +1,40 @@
 <?php
 
-return array(
-	'components' => array(
-		'user' => array(
-			'class' => '\DemoSocial\UserSession',
-			'cookie_lifetime' => 86400,
-			'use_only_cookies' => true
-		),
-		'mysql' => array(
-			'class' => '\DemoSocial\MySQL',
-			'host' => 'localhost',
-			'name' => 'demosocial',
-			'username' => 'demosocial',
-			'password' => 'demosocial'
-		)
-	),
-	'routes' => array(
-		'index' => array('controller' => '\DemoSocial\SiteController', 'action' => 'index', 'guest' => false),
-		'error404' => array('controller' => '\DemoSocial\SiteController', 'action' => 'error404'),
-		'register' => array('controller' => '\DemoSocial\SiteController', 'action' => 'register', 'guest' => true),
-		'login' => array('controller' => '\DemoSocial\SiteController', 'action' => 'login', 'guest' => true),
-		'logout' => array('controller' => '\DemoSocial\SiteController', 'action' => 'logout', 'guest' => false),
-		'profile' => array('controller' => '\DemoSocial\SiteController', 'action' => 'profile', 'guest' => false),
+return [
+	'session' => [
+		'cookie_lifetime' => 86400,
+		'use_only_cookies' => true,
+	],
+	'mysql' => [
+		'host' => 'localhost',
+		'name' => 'demosocial',
+		'username' => 'demosocial',
+		'password' => 'demosocial',
+	],
+	'routes' => [
+		'error404' => ['controller' => \Controller\SiteController::class, 'action' => 'error404', 'guest' => true],
+		'error500' => ['controller' => \Controller\SiteController::class, 'action' => 'error500', 'guest' => true],
+		'index' => ['controller' => \Controller\SiteController::class, 'action' => 'index', 'guest' => false],
+		'register' => ['controller' => \Controller\SiteController::class, 'action' => 'register', 'guest' => true],
+		'login' => ['controller' => \Controller\SiteController::class, 'action' => 'login', 'guest' => true],
+		'logout' => ['controller' => \Controller\SiteController::class, 'action' => 'logout', 'guest' => false],
+		'profile' => ['controller' => \Controller\SiteController::class, 'action' => 'profile', 'guest' => false],
 		
-		'wall' => array('controller' => '\DemoSocial\WallController', 'action' => 'index', 'guest' => false),
-		'ajaxPost' => array('controller' => '\DemoSocial\WallController', 'action' => 'ajaxPost', 'guest' => false),
-		'ajaxLike' => array('controller' => '\DemoSocial\WallController', 'action' => 'ajaxLike', 'guest' => false),
-		'ajaxDisLike' => array('controller' => '\DemoSocial\WallController', 'action' => 'ajaxDisLike', 'guest' => false),
+		'wall' => ['controller' => \Controller\WallController::class, 'action' => 'index', 'guest' => false],
+		'ajaxPost' => ['controller' => \Controller\WallController::class, 'action' => 'ajaxPost', 'guest' => false],
+		'ajaxLike' => ['controller' => \Controller\WallController::class, 'action' => 'ajaxLike', 'guest' => false],
+		'ajaxDisLike' => ['controller' => \Controller\WallController::class, 'action' => 'ajaxDisLike', 'guest' => false],
 		
-		'friends' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'index', 'guest' => false),
-		'search' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'search', 'guest' => false),
-		'ajaxSearch' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'ajaxSearch', 'guest' => false),
-		'ajaxOffers' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'ajaxOffers', 'guest' => false),
-		'ajaxRequest' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'ajaxRequest', 'guest' => false),
-		'ajaxConfirm' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'ajaxConfirm', 'guest' => false),
-		'ajaxReject' => array('controller' => '\DemoSocial\FriendsController', 'action' => 'ajaxReject', 'guest' => false),
+		'friends' => ['controller' => \Controller\FriendsController::class, 'action' => 'index', 'guest' => false],
+		'search' => ['controller' => \Controller\FriendsController::class, 'action' => 'search', 'guest' => false],
+		'ajaxSearch' => ['controller' => \Controller\FriendsController::class, 'action' => 'ajaxSearch', 'guest' => false],
+		'ajaxOffers' => ['controller' => \Controller\FriendsController::class, 'action' => 'ajaxOffers', 'guest' => false],
+		'ajaxRequest' => ['controller' => \Controller\FriendsController::class, 'action' => 'ajaxRequest', 'guest' => false],
+		'ajaxConfirm' => ['controller' => \Controller\FriendsController::class, 'action' => 'ajaxConfirm', 'guest' => false],
+		'ajaxReject' => ['controller' => \Controller\FriendsController::class, 'action' => 'ajaxReject', 'guest' => false],
 		
-		'messages' => array('controller' => '\DemoSocial\CommentsController', 'action' => 'index', 'guest' => false),
-		'ajaxComment' => array('controller' => '\DemoSocial\CommentsController', 'action' => 'ajaxComment', 'guest' => false),
-		'ajaxGetComments' => array('controller' => '\DemoSocial\CommentsController', 'action' => 'ajaxGetComments', 'guest' => false),
-	)
-);
+		'messages' => ['controller' => \Controller\CommentsController::class, 'action' => 'index', 'guest' => false],
+		'ajaxComment' => ['controller' => \Controller\CommentsController::class, 'action' => 'ajaxComment', 'guest' => false],
+		'ajaxGetComments' => ['controller' => \Controller\CommentsController::class, 'action' => 'ajaxGetComments', 'guest' => false],
+	],
+];
