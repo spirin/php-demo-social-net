@@ -37,7 +37,7 @@ class MainLayoutView extends View
 
 	public function render(bool $toString = false): ?string
 	{
-		$this->data['navBar'] = $this->navBarView;
+		$this->data['navBar'] = isset($this->navBarView) ? $this->navBarView : null;
 		$this->data['content'] = $this->contentView;
 		return parent::render($toString);
 	}

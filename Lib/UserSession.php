@@ -93,7 +93,7 @@ class UserSession extends Component
 	public function logout(): void
 	{
 		$this->id = null;
-		$this->data = null;
+		$this->data = [];
 		session_start(Config::get('session', []));
 		unset($_SESSION['id']);
 		session_write_close();
